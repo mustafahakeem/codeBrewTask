@@ -1,0 +1,91 @@
+<div>
+  <div class="input-box">
+    <input
+      placeholder="Search Term"
+      type="text"
+      (keyup)="searchChange($event)"
+    />
+    <input
+      placeholder="Minimum Price"
+      type="text"
+      (keyup)="changePrice($event)"
+    />
+  </div>
+  <div>
+    <ng-multiselect-dropdown
+      [placeholder]="'Configurations'"
+      [settings]="dropdownSettings"
+      [data]="dropdownList"
+      [(ngModel)]="selectedItems"
+      (onSelect)="onItemSelect($event)"
+      (onDeSelect)="onDeSelect($event)"
+    >
+    </ng-multiselect-dropdown>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th (click)="onFilterClick('building_name')" class="cursor header_sort" [class.active]="filter.name === 'building_name'" title="Sort by Building name">
+          Building Name
+          <span>{{ (filter.name === 'building_name' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'building_name' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('tower_name')" class="cursor header_sort" [class.active]="filter.name === 'tower_name'" title="Sort by Tower name">
+          Tower Name
+          <span>{{ (filter.name === 'tower_name' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'tower_name' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('propery_name')" class="cursor header_sort" [class.active]="filter.name === 'propery_name'" title="Sort by Property name">
+          Property Name
+          <span>{{ (filter.name === 'propery_name' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'propery_name' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('configuration_name')" class="cursor header_sort" [class.active]="filter.name === 'configuration_name'" title="Sort by Configuration name">
+          Configuration Name
+          <span>{{ (filter.name === 'configuration_name' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'configuration_name' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('min_price')" class="cursor header_sort" [class.active]="filter.name === 'min_price'" title="Sort by Price">
+          Minimum Price
+          <span>{{ (filter.name === 'min_price' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'min_price' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('bedroom')" class="cursor header_sort" [class.active]="filter.name === 'bedroom'" title="Sort by Bedroom">
+          Bedroom
+          <span>{{ (filter.name === 'bedroom' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'bedroom' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('bathroom')" class="cursor header_sort" [class.active]="filter.name === 'bathroom'" title="Sort by Bathroom">
+          Bathroom
+          <span>{{ (filter.name === 'bathroom' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'bathroom' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+        <th (click)="onFilterClick('half_bathroom')" class="cursor header_sort" [class.active]="filter.name === 'half_bathroom'" title="Sort by Half bathroom">
+          Half Bathroom
+          <span>{{ (filter.name === 'half_bathroom' && filter.order === 'ASC')?'&#8648;':
+            (filter.name === 'half_bathroom' && filter.order === 'DESC')?'&#8650;':'&#8645;'
+          }}</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data">
+        <td [innerHTML]="replaceString(row.building.name)"></td>
+        <td [innerHTML]="replaceString(row.building_towers.tower_name)"></td>
+        <td [innerHTML]="replaceString(row.property_type.name)"></td>
+        <td [innerHTML]="replaceString(row.configuration.name)"></td>
+        <td class="right">{{ row.min_price | number }}</td>
+        <td class="right">{{ row.bedroom }}</td>
+        <td class="right">{{ row.bathroom }}</td>
+        <td class="right">{{ row.half_bathroom }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

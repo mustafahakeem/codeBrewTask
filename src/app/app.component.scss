@@ -1,0 +1,43 @@
+.input-box {
+  display: flex;
+  input {
+    width: 100%;
+    padding: 5px;
+    font-size: 1.2rem;
+  }
+}
+table {
+  width: 100%;
+  border: 0;
+  border-collapse: collapse;
+  thead {
+    background-color: #111827;
+    color: #f9fafb;
+    th {
+      padding: 20px;
+    }
+  }
+  tbody {
+    tr {
+      td {
+        padding: 20px;
+        border: 0;
+        &.right {
+          text-align: right;
+        }
+      }
+      &:nth-child(odd) {
+        background-color: #f3f4f6;
+      }
+      &:nth-child(even) {
+        background-color: #f9fafb;
+      }
+    }
+  }
+}
+.cursor {
+  cursor: pointer;
+}
+.header_sort.active {
+  color: orange;
+}
